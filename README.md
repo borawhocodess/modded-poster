@@ -1,6 +1,6 @@
-# poster
+# modded poster
 
-explanation
+my poster repo for [modded-nanotabpfn](https://github.com/borawhocodess/modded-nanotabpfn)
 
 ## how 2 run
 

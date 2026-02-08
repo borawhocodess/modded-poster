@@ -12,6 +12,7 @@
 % \usepackage[size=custom,width=118.9,height=84.1,scale=1.0]{beamerposter}
 \usepackage[size=custom,width=84.1,height=118.9,scale=1.0]{beamerposter}
 
+
 % \makeatletter
 % \def\input@path{{colorthemes/}}
 % \makeatother
@@ -33,8 +34,8 @@
 % (N+1)*\sepwidth + N*\colwidth = \paperwidth
 \newlength{\sepwidth}
 \newlength{\colwidth}
-\setlength{\sepwidth}{0.025\paperwidth}
-\setlength{\colwidth}{0.3\paperwidth}
+\setlength{\sepwidth}{0.033\paperwidth}
+\setlength{\colwidth}{0.45\paperwidth}
 
 \newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
 
@@ -44,22 +45,24 @@
 
 \title{
 % \hspace*{\sepwidth}\RaggedRight
-title
+NanoTabPFN Speedrun
 % \newline\hspace*{\sepwidth}
 }
 
-\author{Salih \underline{Bora} Öztürk \inst{1} \and X \inst{1}}
+\author{Salih \underline{Bora} Öztürk \inst{1} \and Alexander Pfefferle \and Frank Hutter \inst{1,2}}
 
-\institute[shortinst]{\inst{1} University of Freiburg \samelineand}
+\institute[shortinst]{\inst{1} University of Freiburg \samelineand \inst{2} Prior Labs}
 
 % ====================
 % Footer (optional)
 % ====================
 
 \footercontent{
-  X event 2026
+  Student Poster Presentation Day 2026
   \hfill
   \href{mailto:oeztuers@cs.uni-freiburg.de}{oeztuers@cs.uni-freiburg.de}
+  \hfill
+  \href{https://github.com/borawhocodess/modded-poster.git}{github.com/borawhocodess/modded-poster}
 }
 % (can be left out to remove footer)
 
@@ -68,7 +71,7 @@ title
 % ====================
 
 % use this to include logos on the left and/or right side of the header:
-\logoright{\includegraphics[height=2.22cm]{img/logoufr.png}}
+% \logoright{\includegraphics[height=2.22cm]{img/logoufr.png}}
 % \logoleft{\includegraphics[height=7cm]{logo2.pdf}}
 
 % ====================
@@ -81,36 +84,150 @@ title
 \begin{columns}[t]
 \separatorcolumn
 
-\begin{column}{\colwidth}
+\begin{column}{0.46\paperwidth}
 
-\end{column}
+  \begin{alertblock}{TL;DR}
 
-\separatorcolumn
-
-\begin{column}{\colwidth}
-
-\end{column}
-
-\separatorcolumn
-
-\begin{column}{\colwidth}
-
-  \begin{alertblock}{alert block title}
+    \textbf{modded-nanoTabPFN}: This repository hosts the nanoTabPFN speedrun, in which we search for the fastest way to train a tabular foundation model that beats Random Forest on TabArena datasets.
 
   \end{alertblock}
 
-  \begin{exampleblock}{example block title}
+  \begin{block}{Introduction}
 
-  \end{exampleblock}
+    \heading{Motivation}
 
-  \begin{block}{block title}
+      \begin{itemize}
+        \item TabPFN have shown that pretraining on synthetic datasets can lead to strong performance... \cite{hollmann2023tabpfn} \cite{hollmann2025tabpfnv2}
+        \item However, training these models takes long, and no one has time to wait...
+      \end{itemize}
+
+    \heading{Background}
+
+      \begin{itemize}
+        \item \textbf{PFN} prior fitted network... \cite{mueller2022transformers}
+        \item \textbf{TabPFN} for tabular data... \cite{hollmann2023tabpfn} \cite{hollmann2025tabpfnv2}
+        \item \textbf{nanoTabPFN} a lightweight and educational reimplementation of TabPFN \cite{pfefferle2025nanotabpfnlightweighteducationalreimplementation}
+        \item \textbf{TabArena} a living benchmark for machine learning on tabular data \cite{erickson2025tabarenalivingbenchmarkmachine}
+        \item \textbf{modded-nanogpt} OG speedrunning repo... \cite{modded_nanogpt_2024}
+      \end{itemize}
+
+    \heading{Goal}
+
+      \begin{itemize}
+        \item Pretrain a neural network to ≤0.8068462330697953 validation average ROC AUC on subsampled TabArena using 1 NVIDIA L40S.
+      \end{itemize}
+
+    \heading{This repo now contains a training algorithm which attains the target performance in:}
+
+      \begin{itemize}
+        \item \textbf{10.10 minutes} on 1xL40S (baseline needed 74.32)
+        \item \textbf{13184 synthetic datasets} (baseline needed 80576)
+      \end{itemize}
 
   \end{block}
+
+  \begin{block}{Rules}
+
+    New records must:
+
+    \begin{enumerate}
+      \item Not modify the evaluation pipeline.
+      \item Not load any pretrained weights.
+      \item Run faster than prior record when baselined on the same hardware.
+    \end{enumerate}
+
+    % TODO: add rules to repo readme
+
+    Other than that, anything and everything is fair game!
+
+  \end{block}
+
+  \begin{block}{Evaluation details}
+
+    Evaluation is on all of 38 TabArena classification datasets.
+    \begin{itemize}
+      \item if >100 features, randomly select 100
+      \item if >1000 rows, randomly select 1000 (stratified by class labels)
+      \item 5-fold StratifiedKFold with shuffling, class labels are encoded with integers per fold
+      \item average binary or one-vs-rest ROC AUC over all datasets
+    \end{itemize}
+
+  \end{block}
+
+  \begin{block}{Improvement techniques}
+
+    \heading{With the help of the following techniques:}
+    \begin{itemize}
+      \item Muon optimizer \cite{jordan2024muon}
+      \item ...
+      \item ...
+      \item ...
+    \end{itemize}
+
+    \heading{Also these were tried but did not lead to improvements:}
+    \begin{itemize}
+      \item Xavier initialization
+    \end{itemize}
+
+  \end{block}
+
+\end{column}
+
+\separatorcolumn
+
+\begin{column}{0.44\paperwidth}
+
+  \begin{block}{Record history}
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.7\linewidth]{img/260206-152129-records-plot-x-time-y-val.png}
+      \label{fig:record-history-time}
+    \end{figure}
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.7\linewidth]{img/260206-152132-records-plot-x-datasets-y-val.png}
+      \label{fig:record-history-datasets}
+    \end{figure}
+
+    \begin{center}
+      {\small
+      \setlength{\tabcolsep}{10pt}
+      \begin{tabular}{@{}l p{0.36\linewidth} p{0.21\linewidth}@{}}
+        \toprule
+        Record time & Description & Contributors \\
+        \midrule
+        74.32 mins & Baseline & @borawhocodess, nanotabpfn contributors \\
+        54.41 mins & Muon optimizer & @borawhocodess \\
+        10.10 mins & SDPA, bf16, higher LR, wider embeddings, fewer heads & @carterprince \\
+        ... & ... & ... \\
+        ... & ... & ... \\
+        ... & ... & ... \\
+        \bottomrule
+      \end{tabular}
+      }
+    \end{center}
+
+  \end{block}
+
+  \vspace{1em}
+
+  \begin{exampleblock}{Join the race!}
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.6\linewidth]{img/qr.png}
+      \caption{github.com/borawhocodess/modded-nanotabpfn}
+      \label{fig:qr}
+    \end{figure}
+
+  \end{exampleblock}
 
   \begin{block}{References}
 
     \nocite{*}
-    \footnotesize{\bibliographystyle{plain}\bibliography{poster}}
+    \footnotesize{\bibliographystyle{unsrt}\bibliography{poster}}
 
   \end{block}
 
