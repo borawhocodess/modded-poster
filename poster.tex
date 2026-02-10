@@ -58,6 +58,9 @@ NanoTabPFN in ~9 minutes
 % ====================
 
 \footercontent{
+
+  % TODO: ELLIS Institute Tübingen, Uni Freiburg and priorlabs logo
+
   Student Poster Presentation Day 2026
   \hfill
   \href{mailto:oeztuers@cs.uni-freiburg.de}{oeztuers@cs.uni-freiburg.de}
@@ -101,7 +104,15 @@ NanoTabPFN in ~9 minutes
         \item However, training these models takes long, and no one has time to wait...
       \end{itemize}
 
+    % TODO: good to highlight that back there it was just because of the small scale and no fancy tricks and here we scale up and do a bunch of fancy tricks
+    % TODO: tricks cocktail?
+
     \heading{Background}
+
+      % TODO: remove pfns
+      % TODO: have this as a graphic?
+      % TODO: GPT2 -> nanoGPT -> modded-nanoGPT with TabPFNv2 -> nanoTabPFN -> modded-nanoTabPFN
+      % TODO: nanoGPT speedrun bulletpoints for people that don't know about it
 
       \begin{itemize}
         \item \textbf{PFN} prior fitted network... \cite{mueller2022transformers}
@@ -112,6 +123,8 @@ NanoTabPFN in ~9 minutes
       \end{itemize}
 
     \heading{Goal}
+
+      % TODO: beat Random Forest (~0.8068)
 
       \begin{itemize}
         \item Pretrain a neural network to ≤0.8068462330697953 validation average ROC AUC on subsampled TabArena using 1 NVIDIA L40S.
@@ -125,6 +138,8 @@ NanoTabPFN in ~9 minutes
       \end{itemize}
 
   \end{block}
+
+  % TODO: in rules/eval details we should clarify about what time gets meassured, and whether changes of prior are allowed/whether prior data generation gets meassured.
 
   \begin{block}{Rules}
 
@@ -179,6 +194,8 @@ NanoTabPFN in ~9 minutes
 
   \begin{block}{Record history}
 
+    % TODO: update and highlight these more
+
     \begin{figure}
       \centering
       \includegraphics[width=0.7\linewidth]{img/260206-152129-records-plot-x-time-y-val.png}
@@ -214,6 +231,8 @@ NanoTabPFN in ~9 minutes
   \vspace{1em}
 
   \begin{exampleblock}{Join the race!}
+
+    % TODO: the qr code is too big, we can use that space for something better and a much smaller one also suffices
 
     \begin{figure}
       \centering
