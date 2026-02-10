@@ -9,6 +9,7 @@
 
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
+\usepackage{caption}
 % \usepackage[size=custom,width=118.9,height=84.1,scale=1.0]{beamerposter}
 \usepackage[size=custom,width=84.1,height=118.9,scale=1.0]{beamerposter}
 
@@ -233,13 +234,10 @@ NanoTabPFN in \textasciitilde10 minutes
 
   \begin{exampleblock}{Join the race!}
 
-    % TODO: the qr code is too big, we can use that space for something better and a much smaller one also suffices
-
     \begin{figure}
       \centering
-      \includegraphics[width=0.6\linewidth]{img/qr.png}
-      \caption{github.com/borawhocodess/modded-nanotabpfn}
-      \label{fig:qr}
+      \includegraphics[width=0.4\linewidth]{img/qr.png}
+      \caption*{Scan to join the speedrun on GitHub\\{\footnotesize github.com/borawhocodess/modded-nanotabpfn}}
     \end{figure}
 
   \end{exampleblock}
