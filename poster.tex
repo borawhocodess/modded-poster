@@ -133,7 +133,7 @@ NanoTabPFN in \textasciitilde 10 minutes
     \heading{This repo now contains a training algorithm which attains the target performance in:}
 
       \begin{itemize}
-        \item \textbf{10.10 minutes} on 1xL40S (baseline needed 74.32)
+        \item \textbf{9.26 minutes} on 1xL40S (baseline needed 74.32)
         \item \textbf{13184 synthetic datasets} (baseline needed 80576)
       \end{itemize}
 
@@ -157,7 +157,7 @@ NanoTabPFN in \textasciitilde 10 minutes
 
   \begin{block}{Evaluation details}
 
-    Evaluation is on all of 38 TabArena classification datasets.
+    Evaluation is on all 38 TabArena classification datasets:
     \begin{itemize}
       \item if >100 features, randomly select 100
       \item if >1000 rows, randomly select 1000 (stratified by class labels)
@@ -174,9 +174,15 @@ NanoTabPFN in \textasciitilde 10 minutes
     \heading{With the help of the following techniques:}
     \begin{itemize}
       \item Muon optimizer \cite{jordan2024muon}
-      \item ...
-      \item ...
-      \item ...
+      \item Batched Muon zeropower update for grouped QKV matrices
+      \item Scaled Dot-Product Attention rewrite with explicit QKV \cite{pytorch_sdpa_docs}
+      \item Pre-norm transformer blocks
+      \item Compile TransformerEncoderLayer forward \cite{pytorch_compile_docs}
+      \item bfloat16 autocast in training and inference \cite{pytorch_amp_docs}
+      \item Set float32 matmul precision to high \cite{pytorch_matmul_precision_docs}
+      \item Increase learning rate from $10^{-4}$ to $10^{-3}$
+      \item Increase embedding size from 192 to 256
+      \item Reduce attention heads from 6 to 4
     \end{itemize}
 
     \heading{Also these were tried but did not lead to improvements:}
@@ -194,17 +200,17 @@ NanoTabPFN in \textasciitilde 10 minutes
 
   \begin{block}{Record history}
 
-    % TODO: update and highlight these more
+    % TODO: highlight these more
 
     \begin{figure}
       \centering
-      \includegraphics[width=0.7\linewidth]{img/260206-152129-records-plot-x-time-y-val.png}
+      \includegraphics[width=0.7\linewidth]{img/260211-032956-records-plot-x-time-y-val.png}
       \label{fig:record-history-time}
     \end{figure}
 
     \begin{figure}
       \centering
-      \includegraphics[width=0.7\linewidth]{img/260206-152132-records-plot-x-datasets-y-val.png}
+      \includegraphics[width=0.7\linewidth]{img/260211-032845-records-plot-x-datasets-y-val.png}
       \label{fig:record-history-datasets}
     \end{figure}
 
@@ -218,9 +224,7 @@ NanoTabPFN in \textasciitilde 10 minutes
         74.32 mins & Baseline & @borawhocodess, nanotabpfn contributors \\
         54.41 mins & Muon optimizer & @borawhocodess \\
         10.10 mins & SDPA, bf16, higher LR, wider embeddings, fewer heads & @carterprince \\
-        ... & ... & ... \\
-        ... & ... & ... \\
-        ... & ... & ... \\
+        9.26 mins & Batched Muon, compiled forward & @carterprince \\
         \bottomrule
       \end{tabular}
       }
