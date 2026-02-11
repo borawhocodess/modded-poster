@@ -131,8 +131,6 @@ NanoTabPFN in \textasciitilde 10 minutes
 
   \end{block}
 
-  % TODO: in rules/eval details we should clarify about what time gets meassured, and whether changes of prior are allowed/whether prior data generation gets meassured.
-
   \begin{block}{Rules}
 
     New records must:
@@ -143,7 +141,16 @@ NanoTabPFN in \textasciitilde 10 minutes
       \item Run faster than prior record when baselined on the same hardware.
     \end{enumerate}
 
-    Other than that, anything and everything is fair game!
+    Other than that, anything and everything is fair game, including changes to the synthetic prior generation!
+
+  \end{block}
+
+  \begin{block}{Timing protocol}
+    \begin{itemize}
+      \item Counting only training wall-clock time (forward/backward/optimizer steps over synthetic batches).
+      \item Evaluation runtime is excluded; the training timer is stopped while running validation.
+      \item Prior generation time is excluded (using a pre-generated prior dump is allowed).
+    \end{itemize}
 
   \end{block}
 
