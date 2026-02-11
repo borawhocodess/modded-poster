@@ -148,8 +148,14 @@ NanoTabPFN in \textasciitilde 10 minutes
   \begin{block}{Timing protocol}
     \begin{itemize}
       \item Counting only training wall-clock time (forward/backward/optimizer steps over synthetic batches).
-      \item Evaluation runtime is excluded; the training timer is stopped while running validation.
-      \item Prior generation time is excluded (using a pre-generated prior dump is allowed).
+      \item Evaluation runtime is excluded.
+      \begin{itemize}
+        \item the training timer is stopped while running validation.
+      \end{itemize}
+      \item Prior generation time is excluded.
+      \begin{itemize}
+        \item using a pre-generated prior dump is allowed.
+      \end{itemize}
     \end{itemize}
 
   \end{block}
@@ -174,11 +180,11 @@ NanoTabPFN in \textasciitilde 10 minutes
     \begin{itemize}
       \item Muon optimizer \cite{jordan2024muon}
       \item Batched Muon zeropower update for grouped QKV matrices
-      \item Scaled Dot-Product Attention rewrite with explicit QKV \cite{pytorch_sdpa_docs}
+      \item Scaled Dot-Product Attention rewrite with explicit QKV
       \item Pre-norm transformer blocks \cite{geiping2022crammingtraininglanguagemodel}
-      \item Compile TransformerEncoderLayer forward \cite{pytorch_compile_docs}
-      \item bfloat16 autocast in training and inference \cite{pytorch_amp_docs}
-      \item Set float32 matmul precision to high \cite{pytorch_matmul_precision_docs}
+      \item Compile TransformerEncoderLayer forward
+      \item bfloat16 autocast in training and inference
+      \item Set float32 matmul precision to high
       \item Increase learning rate from $10^{-4}$ to $10^{-3}$
       \item Increase embedding size from 192 to 256
       \item Reduce attention heads from 6 to 4
@@ -210,20 +216,20 @@ NanoTabPFN in \textasciitilde 10 minutes
 
     \begin{figure}
       \centering
-      \includegraphics[width=0.7\linewidth]{img/260211-032956-records-plot-x-time-y-val.png}
+      \includegraphics[width=0.95\linewidth]{img/260211-114840-records-plot-x-time-y-val.png}
       \label{fig:record-history-time}
     \end{figure}
 
     \begin{figure}
       \centering
-      \includegraphics[width=0.7\linewidth]{img/260211-032845-records-plot-x-datasets-y-val.png}
+      \includegraphics[width=0.95\linewidth]{img/260211-114947-records-plot-x-datasets-y-val.png}
       \label{fig:record-history-datasets}
     \end{figure}
 
     \begin{center}
-      {\small
-      \setlength{\tabcolsep}{10pt}
-      \begin{tabular}{@{}l p{0.36\linewidth} p{0.21\linewidth}@{}}
+      {\normalsize
+      \setlength{\tabcolsep}{12pt}
+      \begin{tabular}{@{}l p{0.46\linewidth} p{0.31\linewidth}@{}}
         \toprule
         Record time & Description & Contributors \\
         \midrule
