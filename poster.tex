@@ -171,12 +171,12 @@ NanoTabPFN in \textasciitilde 10 minutes
 
   \begin{block}{Improvement techniques}
 
-    \heading{With the help of the following techniques:}
+    \heading{This improvement in training speed has been brought about by the following techniques:}
     \begin{itemize}
       \item Muon optimizer \cite{jordan2024muon}
       \item Batched Muon zeropower update for grouped QKV matrices
       \item Scaled Dot-Product Attention rewrite with explicit QKV \cite{pytorch_sdpa_docs}
-      \item Pre-norm transformer blocks
+      \item Pre-norm transformer blocks \cite{geiping2022crammingtraininglanguagemodel}
       \item Compile TransformerEncoderLayer forward \cite{pytorch_compile_docs}
       \item bfloat16 autocast in training and inference \cite{pytorch_amp_docs}
       \item Set float32 matmul precision to high \cite{pytorch_matmul_precision_docs}
@@ -185,9 +185,16 @@ NanoTabPFN in \textasciitilde 10 minutes
       \item Reduce attention heads from 6 to 4
     \end{itemize}
 
-    \heading{Also these were tried but did not lead to improvements:}
+    \heading{Work in progress:}
     \begin{itemize}
-      \item Xavier initialization
+      \item GoLU activation function \cite{das2025gompertz}
+      \item RoRa \cite{roratab2024}
+    \end{itemize}
+
+    \heading{The following techniques were evaluated but did not lead to improvements:}
+    \begin{itemize}
+      \item Initialise linear layers with Xavier initialization \cite{pmlr-v9-glorot10a}
+      \item Disable all linear layer biases \cite{geiping2022crammingtraininglanguagemodel}
     \end{itemize}
 
   \end{block}
